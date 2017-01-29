@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" >
+<meta name="description" content="慕课网，移动WEB，alloyteam">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>这不是个Demo页</title>
+<style type="text/css">
+.frame{
+	padding: 5px;
+	width: 1000px;  
+	display: -webkit-flex;
+}
+.sample{
+	width:330px;
+	flex:1;
+	
+}
+.box{
+	width:300px;
+	padding:8px;
+	margin-bottom: 10px;
+	border:1px solid red;
+	display:inline-flex;
+	display:-webkit-inline-flex;
+}
+.box>div{
+	line-height: 40px;color:white;font-size:18px;font-weight:bold;text-align: center
+}
+.box>div:nth-child(1){background-color: #E46C49;}
+.box>div:nth-child(2){background-color: #37B0D3;}
+.box>div:nth-child(3){background-color: #68B33D;}
+.box>div:nth-child(4){background-color: #E46775;}
+.box>div:nth-child(5){background-color: #CFC731;}
+.box>div:nth-child(6){background-color: #8370F4;}
+.desc{ line-height: 24px; font-size:14px;}
+
+#demo2 div{}
+</style>
+ 
+</head>
+
+<body>
+<h1>父容器属性</h1>
+<div id="demo1" class="box">
+	<div style="width:100px"> width:100px </div>
+	<div style="flex:2">flex:2</div>
+	<div style="flex:1">flex:1</div>
+</div>
+<p style="desc">
+混合弹性布局：父节点弹性布局； div1 固定 100px 宽，div2 占剩余空间的2份，div3 占剩余空间的1份 
+</p>
+<hr/>
+<h4>父容器属性flex-direction</h4>
+<div class="frame">
+	<div class="sample">
+		<p>flex-direction:row (顺向排列)</p>
+		<div class="box" style="flex-direction:row">
+			<div style="flex:1">flex:1</div>
+			<div style="flex:2">flex:2</div>
+			<div style="flex:3">flex:3</div>
+		</div>
+	</div>
+	<div class="sample">
+		<p>flex-direction:row-reverse (反向排列)</p>
+		<div class="box" style="flex-direction:row-reverse">
+			<div style="flex:1">flex:1</div>
+			<div style="flex:2">flex:2</div>
+			<div style="flex:3">flex:3</div>
+		</div>
+	</div> 
+</div>
+<p style="desc">
+	flex-direction 为父容器属性，定义子节点的排列顺序：水平 flex-direction:row/row-reverse;<br/>
+	兼容性：<strong>box-orient:horizontal + box-direction:normal/reverse</strong>可以达到flex-direction:row/row-reverse效果 
+</p>  
+<div class="frame">
+	<div class="sample">
+		<p>flex-direction:column (纵向排列)</p>
+		<div   class="box" style="flex-direction:column">
+			<div style="flex:1">flex:1</div>
+			<div style="flex:2">flex:2</div>
+			<div style="flex:3">flex:3</div>
+		</div>
+	</div>
+	<div class="sample">
+		<p>flex-direction:column-reverse (反纵向排列)</p>
+		<div class="box" style="flex-direction:column-reverse">
+			<div style="flex:1">flex:1</div>
+			<div style="flex:2">flex:2</div>
+			<div style="flex:3">flex:3</div>
+		</div>
+	</div>
+</div>
+<p style="desc">
+	flex-direction 为父容器属性，定义子节点的排列顺序: 垂直 flex-direction:column/row-column;<br/>
+	兼容性：<strong>box-orient:vertical + box-direction:normal/reverse</strong>可以达到flex-direction:column/column-reverse效果 
+</p>  
+<hr/>
+<h4>父容器属性flex-wrap</h4>
+<div class="frame">
+	<div class="sample">
+		<p>flex-wrap:nowrap 不换行</p>
+		<div   class="box" style="flex-direction:row;flex-wrap:nowrap">
+			<div style="width:100px">100px</div>
+			<div style="width:200px">200px</div>
+			<div style="">无定义宽度</div>
+		</div>
+	</div>
+	<div class="sample">
+		<p>flex-wrap:wrap 换行</p>
+		<div class="box" style="flex-direction:row;flex-wrap:wrap; ">
+			<div style="width:100px">flex:1</div>
+			<div style="width:200px">flex:2</div>
+			<div style="width:300px">flex:3</div>
+		</div>
+	</div>
+</div>
+<p style="desc">
+	flex-wrap 为父容器属性，定义子节点是否换行，<br/>
+	no-wrap: 父元素为no-wrap，相当于子节点自动定义 flex属性,子节点根据自己实际宽度与父容器总宽度的比例进行占位，子节点不换行<br/> 
+	wrap: 父元素为wrap 时, 子节点终于自己实际宽度，并且换行排列 <br/>
+	兼容性：<strong>box-lines:single/multiple 默认single</strong>  
+</p> 
+<hr/>
+<h4>父容器属性flex-flow</h4> 
+<p>flex-direction + flex-wrap 合并写法。 写法： -webkit-flex-flow:row wrap</p>
+<div class="frame">
+	<div class="sample">
+		<p>flex-flow:row wrap 合并写法</p>
+		<div   class="box" style="flex-flow:row nowrap">
+			<div style="width:100px">100px</div>
+			<div style="width:200px">200px</div>
+			<div style="">无定义宽度</div>
+		</div>
+	</div> 
+</div>
+<hr/>
+<h4>父容器属性 justify-content </h4> 
+<p>定义子元素的横向排列方式</p>
+<div class="frame">
+	<div class="sample">
+		<p>justify-content: flex-start 靠左排列 </p>
+		<div   class="box" style="justify-content: flex-start; ">
+			<div style="width:50px">1</div>
+			<div style="width:50px">2</div>
+			<div style="width:50px">3</div>
+		</div>
+	</div>
+	<div class="sample">
+		<p>justify-content: flex-end 靠右排列</p>
+		<div   class="box" style="justify-content:flex-end">
+			<div style="width:50px">1</div>
+			<div style="width:50px">2</div>
+			<div style="width:50px">3</div>
+		</div>
+	</div> 
+</div>
+<p class="desc">父容器定义了justify-content:<br/>
+	flex-start == float:left  /  flex-end == float:right
+ </p>
+<div class="frame">
+	<div class="sample">
+		<p>justify-content: space-between 子节点相对容器等比分布（头尾节点紧贴父节点两侧）</p>
+		<div   class="box" style="justify-content: space-between; ">
+			<div style="width:50px">1</div>
+			<div style="width:50px">2</div>
+			<div style="width:50px">3</div>
+		</div>
+	</div>
+	<div class="sample">
+		<p>justify-content: space-around 子节点等距分布，头尾子节点离父容器有一定距离</p>
+		<div   class="box" style="justify-content:space-around">
+			<div style="width:50px">1</div>
+			<div style="width:50px">2</div>
+			<div style="width:50px">3</div>
+		</div>
+	</div> 
+</div>
+<p class="desc">justify-content 其他值:<br/>
+	space-between ： 子节点相对容器等比分布（头尾节点紧贴父节点两侧）<br/>
+	space-around 子节点等距分布，头尾子节点离父容器有一定距离<br/>
+	兼容性：<strong>-moz-box-pack:center; / -webkit--moz-box-pack:center; / box-pack:center;</strong>
+ </p>
+<hr/>
+<h4>父容器属性 align-items  （子元素的垂直定位属性） </h4> 
+<p>定义父容器内的子节点垂直方向的位置的属性</p>
+<div class="frame">
+	<div class="sample" style="width:100%; ">
+		<div class="box" style="width:150px;height:100px;align-items:flex-start">
+			<div>flex-start</div>
+			<div>flex-start</div>
+		</div>
+		<div class="box" style="width:150px;height:100px;align-items:flex-end">
+			<div>flex-end</div>
+			<div>flex-end</div>
+		</div>
+		<div class="box" style="width:150px;height:100px;align-items:center">
+			<div>center</div>
+			<div>center</div>
+		</div>
+		<div class="box" style="width:150px;height:100px;align-items:stretch">
+			<div>stretch</div>
+			<div>stretch</div>
+		</div>
+		<div class="box" style="width:250px;height:100px;align-items:baseline">
+			<div style="padding-top:20px">baseline</div>
+			<div style="padding-top:40px;padding-bottom:20px">baseline</div>
+			<div style="padding-top:60px">baseline</div>
+		</div>
+	</div>	
+</div>
+<p class="desc">
+align-items属性是父容器定义子节点在垂直方向上位置的位置，可以看作<br/>
+有 flex-start(顶部) / flex-end(底部) / center(中间) / stretch(占满) / baseline(内容对齐)（首行内容）<br/>
+兼容性写法：<strong>box-align:center;-moz-box-align:center;-webkit-box-align:center;</strong>	
+</p>
+<hr/>
+<h4>父容器属性 align-content （子元素的上下距离属性） </h4> 
+<p>align-content 是 父容器 定义垂直方向子节点的 类似“justify-content”属性，控制子节点 上下之间的距离</p>
+<div class="frame">
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点未设定align-content属性时，子元素默认根据父容器高度等比分配</p>
+		<div class="box" style="width:400px;height:150px;align-items:flex-start; flex-wrap:wrap">
+			<div style="width:80px;">未设定</div> 
+			<div style="width:80px;">未设定</div> 
+			<div style="width:80px;">未设定</div> 
+			<div style="width:80px;">未设定</div> 
+			<div style="width:80px;">未设定</div>
+			<div style="width:80px;">未设定</div>  
+		</div>
+	</div>
+</div>	
+<div class="frame">
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点设定 align-content: flex-start(从上开始紧贴排列) </p>
+		<div class="box" style="width:400px;height:150px;align-items:flex-start; flex-wrap:wrap;align-content:flex-start">
+			<div style="width:100px;">flex-start</div> 
+			<div style="width:100px;">flex-start</div> 
+			<div style="width:100px;">flex-start</div> 
+			<div style="width:100px;">flex-start</div> 
+			<div style="width:100px;">flex-start</div>
+			<div style="width:100px;">flex-start</div>  
+		</div>
+	</div>
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点设定 align-content: flex-end(从下开始紧贴排列) 注：align-items:end 表示子元素从下方开始一行行向上排列但不会每行向下紧贴靠拢， align-content:flex-end 可以向下靠拢 </p>
+		<div class="box" style="width:400px;height:150px;align-items:flex-end; flex-wrap:wrap;align-content:flex-end">
+			<div style="width:100px;">flex-end1</div> 
+			<div style="width:100px;">flex-end2</div> 
+			<div style="width:100px;">flex-end3</div> 
+			<div style="width:100px;">flex-end4</div> 
+			<div style="width:100px;">flex-end5</div>
+			<div style="width:100px;">flex-end6</div>  
+		</div>
+	</div>
+</div>	
+<div class="frame">
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点设定 align-content: center(从中间向上下两边扩展) </p>
+		<div class="box" style="width:400px;height:300px;align-items:flex-start; flex-wrap:wrap;align-content:center">
+			<div style="width:100px;">center</div> 
+			<div style="width:100px;">center</div>    
+			<div style="width:100px;">center</div> 
+			<div style="width:100px;">center</div> 
+			<div style="width:100px;">center</div> 
+			<div style="width:100px;">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+			<div style="width:100px;background:red">center</div> 
+		</div>
+	</div>
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点设定 align-content: space-between(根据父容器的高度按比例分配子节点的上下行距) </p>
+		<div class="box" style="width:400px;height:300px;align-items:flex-start; flex-wrap:wrap;align-content:space-between;">
+			<div style="width:100px;">between1</div> 
+			<div style="width:100px;">between2</div>    
+			<div style="width:100px;">between3</div> 
+			<div style="width:100px;">between4</div> 
+			<div style="width:100px;">between5</div> 
+			<div style="width:100px;">between6</div>  
+			<div style="width:100px;background:red">between7</div> 
+			<div style="width:100px;background:red">between8</div> 
+			<div style="width:100px;background:red">between9</div> 
+			<div style="width:100px;background:red">between10</div> 
+			<div style="width:100px;background:red">between11</div>   
+		</div>
+	</div>
+</div>
+<div class="frame"> 
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点设定 align-content: space-around(父容器的子节点具有上下统一的距离，包括最上和最下一排) </p>
+		<div class="box" style="width:400px;height:300px;align-items:flex-start; flex-wrap:wrap;align-content:space-around;">
+			<div style="width:100px;">around1</div> 
+			<div style="width:100px;">around2</div>    
+			<div style="width:100px;">around3</div> 
+			<div style="width:100px;">around4</div> 
+			<div style="width:100px;">around5</div> 
+			<div style="width:100px;">around6</div>  
+			<div style="width:100px;background:red">around</div> 
+			<div style="width:100px;background:red">around8</div> 
+			<div style="width:100px;background:red">around9</div> 
+			<div style="width:100px;background:red">around10</div> 
+			<div style="width:100px;background:red">around11</div>   
+		</div>
+	</div>
+	<div class="sample" style="width:40%;  ">
+		<p> 父节点设定 align-content: stretch(子节点自动调整高度占满父容器垂直空间) (注：align-content: stretch使用时主要与align-items的属性有冲突；)</p>
+		<div class="box" style="width:400px;height:300px; flex-wrap:wrap;align-content:stretch;">
+			<div style="width:100px;">stretch1</div> 
+			<div style="width:100px;">stretch2</div>    
+			<div style="width:100px;">stretch3</div> 
+			<div style="width:100px;">stretch4</div> 
+			<div style="width:100px;">stretch5</div> 
+			<div style="width:100px;">stretch6</div>
+			<div style="width:100px;background:red">stretch</div> 
+			<div style="width:100px;background:red">stretch8</div> 
+			<div style="width:100px;background:red">stretch9</div> 
+			<div style="width:100px;background:red">stretch10</div> 
+			<div style="width:100px;background:red">stretch11</div>    
+		</div>
+	</div>
+</div>
+<hr/>
+<hr/>
+<h1>子元素属性</h1>
+<h4>子容器 属性 flex </h4> 
+<p>flex 为组合属性，由flex: flex-grow flex-shrink flex-basis 组成 这三个的默认值为 "flex: 0 1 auto"</p>
+<div class="frame"> 
+	<div class="sample">
+		<p> 子元素等比分布</p>
+		<div class="box">
+			<div>flex:0 1 auto</div>
+			<div>flex:0 1 auto</div>
+			<div>flex:0 1 auto</div>
+		</div>
+	</div>
+</div>
+<hr/>
+<h4>子容器 属性 flex-grow </h4> 
+<p>flex-grow：子节点相对父容器空间扩展时所占的比例，值>=0, 当父容器 宽度增加时， 子元素会根据所有兄弟子节点 的flex-grow属性值的总和 和自身的 flex-grow 属性值 的比例进行伸展</p>
+<div class="frame" style="width:100%"> 
+	<div class="sample" style="width:100%">
+		<p>设置父节点宽度为屏幕宽，第一个子元素固定宽度100px，后面三个分别占屏幕剩余宽度的1份 2份 3份，当屏幕宽度变化时，子节点等比变化</p>
+		<div class="box" style="width:100%">
+			<div style="width:100px">width:100px</div>
+			<div style="flex:1 1 auto">flex-grow:1 (flex:1 1 auto)</div>
+			<div style="flex:2 1 auto">flex-grow:2 (flex:2 1 auto)</div>
+			<div style="flex:3 1 auto">flex-grow:3 (flex:3 1 auto)</div>
+		</div>
+	</div>
+</div>
+<p class="desc"> 兼容性 ：box-flex / -webkit-box-flex  可以 作为 flex-grow 的旧版兼容</p>
+<hr/>
+<h4>子容器 属性 flex-shrink </h4> 
+<p>flex-shrink 时flex的第二个值，值>=0，默认=1，表示当父容器空间被压缩时，子节点的压缩比例。flex-shrink=0时不压缩，shrink=1时等比压缩</p>
+<div class="frame" style="width:100%"> 
+	<div class="sample" style="width:100%">
+		<p>设置父节点宽度为屏幕宽，第一个用“flex-basis=300px”定义固定宽度，并且定义了flex-shrink=0,后两个1:1等分剩余空间，当浏览器宽度压缩时，第二个子元素flex-shrink=3，压缩比为3。第三个子元素flex-shrink=1，压缩比为1 </p>
+		<div class="box" style="width:100%">
+			<div style="flex:0 0 300px">shrink:0 (flex:0 0 300px)</div> 
+			<div style="flex:1 3 auto">shrink:3 (flex:1 3 auto)</div>
+			<div style="flex:1 1 auto">shrink:1 (flex:1 1 auto)</div> 
+		</div>
+	</div>
+</div>
+<hr/>
+<h4>子容器属性 flex-basis </h4>
+<p>flex 属性的第三个值 ，用来定义子元素的初始宽高度</p>
+<div class="frame" style="width:100%"> 
+	<div class="sample" style="width:100%">
+		<p>子元素 设定grow 和 shrink 均为 0，并设定 basis 为固定值，相当于给子元素设置了固定宽高度，不随父容器大小变化改变</p>
+		<div class="box" style="width:100%">
+			<div style="flex:0 0 300px">flex:0 0 300px</div> 
+			<div style="flex:0 0 100px">0 0 100px</div>
+			<div style="flex:0 0 100px">0 0 100px</div> 
+		</div>
+	</div>
+</div>
+<div class="frame" style="width:100%"> 
+	<div class="sample" style="width:100%">
+		<p>子节点 定义了 flex-basis=300px, flex-grow=0 flex-shrink=1 ,此时子元素的默认长度为300，且最大宽度为300，当父容器大小小于所有子节点宽度之和时，flex-shrink=1控制子节点等比缩小</p>
+		<div class="box" style="width:100%">
+			<div style="flex:0 1 300px">flex:0 1 300</div> 
+			<div style="flex:0 1 300px">flex:0 1 300</div>
+			<div style="flex:0 1 300px">flex:0 1 300</div> 
+		</div>
+	</div>
+</div>
+<div class="frame" style="width:100%"> 
+	<div class="sample" style="width:100%">
+		<p>子节点 定义了 flex-basis=200px, flex-grow=1 flex-shrink=0 , 此时子元素的最小宽度为200（shrink=0不允许缩小），当父容器宽度大于所有子节点最小宽度和时，子节点根据grow的值进行等比伸展填充父容器的空间。在父容器缩小时，子节点最小索道flex-basis 的值</p>
+		<div class="box" style="width:100%">
+			<div style="flex:1 0 200px">flex:1 0 200</div> 
+			<div style="flex:1 0 200px">flex:1 0 200</div>
+			<div style="flex:1 0 200px">flex:1 0 200</div> 
+		</div>
+	</div>
+</div>
+<hr/>
+<h4>子容器属性 order </h4> 
+<p>定义子元素的排序顺序</p>
+<div class="frame" style="width:100%"> 
+	<div class="sample" style="width:100%">
+		<p>子节点order默认为0，order=-1 的子节点 排在order=0的前面，order=1的排在order=0的后面，order值越大排列越后</p>
+		<div class="box" style="width:100%">
+			<div style="flex:0 1 100px">1</div> 
+			<div style="flex:0 1 100px">2</div>
+			<div style="flex:0 1 100px; order:-1" >3 order:-1</div>
+			<div style="flex:0 1 100px; order:1">4 order:1</div> 
+			<div style="flex:0 1 100px">5</div>
+			<div style="flex:0 1 100px">6</div> 
+		</div>
+	</div>
+</div>
+<p class="desc">兼容性：box-order:num;　-webkit-box-order:num;</p>
+<hr/>
+<h4>子容器属性 align-self </h4> 
+<p>定义单个子节点垂直方向的位置的属性</p>
+<div class="frame">
+	<div class="sample" style="width:48%; height:200px">
+		<p>定义子节点垂直方向的位置的属性</p>
+		<div class="box" style=" width:480px; height:200px">
+			<div style="width:95px;align-self:flex-start">flex-start</div>
+			<div style="width:95px;align-self:flex-end">flex-end</div>
+			<div style="width:95px;align-self:center">center</div>
+			<div style="width:95px;align-self:auto">auto=<br/>stretch</div>
+			<div style="width:95px;align-self:stretch">stretch=<br/>auto</div> 
+		</div>
+	</div>
+	<div class="sample" style="width:50%; height:200px">
+		<p>align-self: baseline</p>
+		<div class="box" style=" width:500px; height:200px">
+			<div style="width:80px;  padding-top:90px; align-self:flex-baseline">baseline</div>
+			<div style="width:80px; padding-top:30px; align-self:flex-baseline">baseline</div>
+			<div style="width:80px; padding-top:60px; align-self:flex-baseline">baseline</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<script>
+</script>
+</html>
+            
